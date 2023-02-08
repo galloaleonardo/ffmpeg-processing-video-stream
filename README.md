@@ -25,7 +25,7 @@ yarn install
 
 - Start server streaming on 3000 port:
 ```
-yarn start:server // 
+yarn start:server 
 ```
 
 - Start client on 8080 port by default:
