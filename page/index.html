@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streamming</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+    <style>
+        body {
+            text-align: center;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        button {
+            padding: 0.5rem;
+            margin: 1rem;
+            font-size: 1rem;
+            background-color: lightskyblue;
+            border: 0rem;
+            font-family: "Montserrat", sans-serif;
+        }
+
+        .center {
+            left: 50%;
+            position: absolute;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+    <div class="center">
+        <h2>Click to choose video filter:</h2>
+        
+        <hr>
+
+        <button onclick="reloadWithParamColor('monochrome')">Monochrome</button>
+        <button onclick="reloadWithParamColor('sepia')">Sepia</button>
+        <button onclick="reloadWithParamColor('red')">Red</button>
+
+
+        <video width="1080" controls>
+            <source id="video" src="" type="video/mp4">
+        </video>
+    </div>
+</body>
+<script>
+    const reloadWithParamColor = (chosenColor) => {
+        window.location.href = 'http://' + window.location.host + window.location.pathname + `?filter=${chosenColor}`
+    }
+
+    const getQueryVariable = (variable) => {
+            let query = window.location.search.substring(1);
+            let vars = query.split("&");
+            
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) {
+                    return pair[1];
+                }
+            }
+            return false;
+        }
+
+        const loadVideo = () => {
+            const chosenFilter = getQueryVariable("filter");
+
+            let video = document.getElementById("video");
+            video.setAttribute("src", `http://localhost:3000?filter=${chosenFilter}`);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => loadVideo());
+</script>
+</html>

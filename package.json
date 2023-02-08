@@ -1,0 +1,14 @@
+{
+  "name": "streaming-video-processing",
+  "version": "1.0.0",
+  "main": "index.mjs",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "start:server": "node --watch src/index.js",
+    "start:client": "http-server page/"
+  },
+  "dependencies": {
+    "http-server": "^14.1.1"
+  }
+}
